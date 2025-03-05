@@ -22,7 +22,7 @@ from .gen_pas import generate_password
 
 
 
-# Настройка автодополнения
+
 COMMANDS = [
     "encrypt", "decrypt", "exit", "clear", "help", "info", "mkdir", "ls", 
     "rm", "cd", "touch", "vim", "update", "python", "ai-mix", "cat", "pwd", "genp"
@@ -30,7 +30,7 @@ COMMANDS = [
 readline.parse_and_bind("tab: complete")
 readline.set_completer(lambda text, state: [cmd for cmd in COMMANDS if cmd.startswith(text)][state])
 
-# Настройка ключей и виртуальной файловой системы
+
 key = load_or_create_key()
 fernet = Fernet(key)
 setup_virtual_fs()
@@ -44,10 +44,7 @@ else:
     with open(username_file, "r") as f:
         username = f.read().strip()
 
-# Функция для обработки аргументов
 
-
-# Основной цикл Temix
 def temix():
     while True:
         user_wants = input(colored(f"[{get_current_dir()}]{username}> ", "green")).strip().lower()
